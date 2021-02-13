@@ -45,11 +45,11 @@ teamCreator = () => { inquirer.prompt ([
         name: "className",
         message: "Would you like to add anyone else to this team?",
         choices: ["Engineer", "Intern", "I am finished adding team members!"]
-    },
+    }
 
 
-]) .then (response=>{
-switch (response.className) {
+]) .then (answers=>{
+switch(answers.className) {
     case "Engineer":
         engineerPrompt()
         break;
@@ -60,9 +60,11 @@ switch (response.className) {
 
         /// put answers into this
 // fs.writeFileSync('index.html', HTMLCreator(answers))
-}}
+}})
 
-       , engineerPrompt = () => {
+        function engineerPrompt() {
+            
+    
             // if (className === "Engineer") {
             //     return function engineer() {
 
@@ -96,11 +98,21 @@ switch (response.className) {
                             type: "list",
                             name: "className",
                             message: "Would you like to add anyone else to this team?",
-                            choices: [`Engineer` `Intern`]
+                            choices: ["Engineer", "Intern", "I am finished adding team members!"]
                         },
 
 
-                    ])
+                    ])  .then (answers=>{
+                        switch(answers.className) {
+                            case "Engineer":
+                                engineerPrompt()
+                                break;
+                            case "Intern":
+                                internPrompt()
+                                break;
+                                default:
+                        
+                        }})
             //     }
             // }
 
@@ -144,6 +156,6 @@ switch (response.className) {
         
 
 
-                })}
+             }}
 
 
