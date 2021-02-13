@@ -2,10 +2,12 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path')
+const Engineer = require(`./lib/Engineer`)
+const Intern = require(`./lib/Intern`)
+const Manager = require(`./lib/Manager`)
 
-
-
-// function teamCreator() {
+//
+const teamArray = []
 
     inquirer.prompt([
 
@@ -33,8 +35,9 @@ const path = require('path')
             message: "Please enter the office number of the team manager.",
         },
 
-    ]) .then (responses=>{
-
+    ]) .then (answers=>{
+const managerAppend = new Manager (answers.teamManagersName, answers.employeeID, answers.emailAddress, answers.officeNumber)
+teamArray.push(managerAppend)
 
        teamCreator () 
     })
@@ -63,16 +66,11 @@ switch(answers.className) {
 }})
 
         function engineerPrompt() {
-            
-    
-            // if (className === "Engineer") {
-            //     return function engineer() {
-
                     inquirer.prompt([
 
                         {
                             type: "input",
-                            name: "teamManagersName",
+                            name: "engineersName",
                             message: "Please enter the name of the engineer.",
                         },
 
@@ -91,7 +89,56 @@ switch(answers.className) {
                         {
                             type: "input",
                             name: "gitHubUser",
-                            message: "Please enter the office number of the engineer.",
+                            message: "Please enter the github username of the engineer.",
+                        },
+
+                        {
+                            type: "list",
+                            name: "className",
+                            message: "Would you like to add anyone else to this team?",
+                            choices: ["Engineer", "Intern", "I am finished adding team members!"]
+                        },
+                        
+                    ]).then (answers=>{
+                        const engineerAppend = new Engineer (answers.engineersName, answers.employeeID, answers.emailAddress, answers.gitHubUser)
+                        teamArray.push(engineerAppend)
+                        
+                               teamCreator () 
+                            })
+                
+                
+                }}
+            
+
+
+
+
+            
+        function internPrompt() {
+                    inquirer.prompt([
+
+                        {
+                            type: "input",
+                            name: "internsName",
+                            message: "Please enter the name of the Intern.",
+                        },
+
+                        {
+                            type: "input",
+                            name: "employeeID",
+                            message: "Please enter the ID of the Intern.",
+                        },
+
+                        {
+                            type: "input",
+                            name: "emailAddress",
+                            message: "Please enter the email address of the Intern.",
+                        },
+
+                        {
+                            type: "input",
+                            name: "school",
+                            message: "Please enter the School of the Intern.",
                         },
 
                         {
@@ -102,60 +149,20 @@ switch(answers.className) {
                         },
 
 
-                    ])  .then (answers=>{
-                        switch(answers.className) {
-                            case "Engineer":
-                                engineerPrompt()
-                                break;
-                            case "Intern":
-                                internPrompt()
-                                break;
-                                default:
+                    ]) .then (answers=>{
+                        const internAppend = new Intern (answers.teamManagersName, answers.employeeID, answers.emailAddress, answers.school)
+                        teamArray.push(internAppend)
                         
-                        }})
-            //     }
-            // }
-
-
-            // else if (className === "Intern") {
-            //     return function internPrompt() {
-            //         inquirer.prompt([
-
-            //             {
-            //                 type: "input",
-            //                 name: "teamManagersName",
-            //                 message: "Please enter the name of the intern.",
-            //             },
-
-            //             {
-            //                 type: "input",
-            //                 name: "employeeID",
-            //                 message: "Please enter the ID of the intern.",
-            //             },
-
-            //             {
-            //                 type: "input",
-            //                 name: "emailAddress",
-            //                 message: "Please enter the email address of the inter.",
-            //             },
-
-            //             {
-            //                 type: "input",
-            //                 name: "school",
-            //                 message: "Please enter the school of the intern.",
-            //             },
-
-
-
-
-            //         ])
-            //     }
-            // }
-
-
-        
-
-
-             }}
+                               teamCreator () 
+                            })
+                        
+                        }
+            
+            
+            
+            
+            
+            
+            
 
 
