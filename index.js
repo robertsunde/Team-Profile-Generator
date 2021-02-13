@@ -5,7 +5,9 @@ const path = require('path')
 const Engineer = require(`./lib/Engineer`)
 const Intern = require(`./lib/Intern`)
 const Manager = require(`./lib/Manager`)
+const importfromJSfile = (`./src/htmldata.js`)
 
+fs.writeFileSync('Team.html', importfromJSfile(teamArray))
 //
 const teamArray = []
 
@@ -92,12 +94,7 @@ switch(answers.className) {
                             message: "Please enter the github username of the engineer.",
                         },
 
-                        {
-                            type: "list",
-                            name: "className",
-                            message: "Would you like to add anyone else to this team?",
-                            choices: ["Engineer", "Intern", "I am finished adding team members!"]
-                        },
+                        
                         
                     ]).then (answers=>{
                         const engineerAppend = new Engineer (answers.engineersName, answers.employeeID, answers.emailAddress, answers.gitHubUser)
@@ -141,22 +138,18 @@ switch(answers.className) {
                             message: "Please enter the School of the Intern.",
                         },
 
-                        {
-                            type: "list",
-                            name: "className",
-                            message: "Would you like to add anyone else to this team?",
-                            choices: ["Engineer", "Intern", "I am finished adding team members!"]
-                        },
 
 
                     ]) .then (answers=>{
-                        const internAppend = new Intern (answers.teamManagersName, answers.employeeID, answers.emailAddress, answers.school)
+                        const internAppend = new Intern (answers.internsName, answers.employeeID, answers.emailAddress, answers.school)
                         teamArray.push(internAppend)
                         
                                teamCreator () 
                             })
-                        
+                     
                         }
+
+                        // console.log(teamArray)
             
             
             
