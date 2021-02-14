@@ -5,9 +5,7 @@ const path = require('path')
 const Engineer = require(`./lib/Engineer`)
 const Intern = require(`./lib/Intern`)
 const Manager = require(`./lib/Manager`)
-const importfromJSfile = (`./src/htmldata.js`)
 
-fs.writeFileSync('Team.html', importfromJSfile(teamArray))
 //
 const teamArray = []
 
@@ -40,6 +38,7 @@ const teamArray = []
     ]) .then (answers=>{
 const managerAppend = new Manager (answers.teamManagersName, answers.employeeID, answers.emailAddress, answers.officeNumber)
 teamArray.push(managerAppend)
+
 
        teamCreator () 
     })
@@ -95,7 +94,6 @@ switch(answers.className) {
                         },
 
                         
-                        
                     ]).then (answers=>{
                         const engineerAppend = new Engineer (answers.engineersName, answers.employeeID, answers.emailAddress, answers.gitHubUser)
                         teamArray.push(engineerAppend)
@@ -104,6 +102,8 @@ switch(answers.className) {
                             })
                 
                 
+
+                            
                 }}
             
 
@@ -141,21 +141,12 @@ switch(answers.className) {
 
 
                     ]) .then (answers=>{
-                        const internAppend = new Intern (answers.internsName, answers.employeeID, answers.emailAddress, answers.school)
+                        const internAppend = new Intern (answers.teamManagersName, answers.employeeID, answers.emailAddress, answers.school)
                         teamArray.push(internAppend)
                         
                                teamCreator () 
                             })
-                     
+                        
                         }
-
-                        // console.log(teamArray)
             
-            
-            
-            
-            
-            
-            
-
-
+                        
