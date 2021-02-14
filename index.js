@@ -39,6 +39,8 @@ const teamArray = []
 const managerAppend = new Manager (answers.teamManagersName, answers.employeeID, answers.emailAddress, answers.officeNumber)
 teamArray.push(managerAppend)
 
+console.log (managerAppend)
+console.log (teamArray)
 
        teamCreator () 
     })
@@ -98,6 +100,9 @@ switch(answers.className) {
                         const engineerAppend = new Engineer (answers.engineersName, answers.employeeID, answers.emailAddress, answers.gitHubUser)
                         teamArray.push(engineerAppend)
                         
+                        console.log (engineerAppend)
+                        console.log (teamArray)
+
                                teamCreator () 
                             })
                 
@@ -141,9 +146,12 @@ switch(answers.className) {
 
 
                     ]) .then (answers=>{
-                        const internAppend = new Intern (answers.teamManagersName, answers.employeeID, answers.emailAddress, answers.school)
+                        const internAppend = new Intern (answers.internsName, answers.employeeID, answers.emailAddress, answers.school)
                         teamArray.push(internAppend)
                         
+                        console.log (internAppend)
+                        console.log (teamArray)
+
                                teamCreator () 
                             })
                         
