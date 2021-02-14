@@ -62,6 +62,9 @@ switch(answers.className) {
     case "Intern":
         internPrompt()
         break;
+    case "I am finished adding team members!":
+        console.log (teamArray[2].id)
+        break;
         default:
 
         /// put answers into this
@@ -157,4 +160,5 @@ switch(answers.className) {
                         
                         }
             
-                        
+
+                        // console.log (teamArray.Engineer.id)
