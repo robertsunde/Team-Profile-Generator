@@ -8,6 +8,7 @@ const Manager = require(`./lib/Manager`)
 
 //
 const teamArray = []
+const fullArray = []
 
     inquirer.prompt([
 
@@ -39,8 +40,21 @@ const teamArray = []
 const managerAppend = new Manager (answers.teamManagersName, answers.employeeID, answers.emailAddress, answers.officeNumber)
 teamArray.push(managerAppend)
 
-console.log (managerAppend)
-console.log (teamArray)
+var managersCard = (`<div class="card" style="width: 18rem;">
+<img class="card-img-top" src="..." alt="Card image cap">
+<div class="card-body">
+  <h5 class="card-title"> ${answers.teamManagersName}</h5>
+  <p class="card-title">${answers.employeeID}</p>
+  <p class="card-text">${answers.emailAddress}</p>
+  <p class="card-text">${answers.officeNumber}</p>
+  <a href="#" class="btn btn-primary">Go somewhere</a>
+</div>
+</div>`)
+
+fullArray.push(managersCard)
+
+// console.log (managerAppend)
+// console.log (teamArray)
 
        teamCreator () 
     })
@@ -63,7 +77,7 @@ switch(answers.className) {
         internPrompt()
         break;
     case "I am finished adding team members!":
-        console.log (teamArray[2].id)
+        fs.writeFileSync('Team.html', arrayTest())
         break;
         default:
 
@@ -82,13 +96,13 @@ switch(answers.className) {
 
                         {
                             type: "input",
-                            name: "employeeID",
+                            name: "engineersID",
                             message: "Please enter the ID of the engineer.",
                         },
 
                         {
                             type: "input",
-                            name: "emailAddress",
+                            name: "engineersemailAddress",
                             message: "Please enter the email address of the engineer.",
                         },
 
@@ -100,11 +114,24 @@ switch(answers.className) {
 
                         
                     ]).then (answers=>{
-                        const engineerAppend = new Engineer (answers.engineersName, answers.employeeID, answers.emailAddress, answers.gitHubUser)
+                        const engineerAppend = new Engineer (answers.engineersName, answers.engineersID, answers.engineersemailAddress, answers.gitHubUser)
                         teamArray.push(engineerAppend)
                         
-                        console.log (engineerAppend)
-                        console.log (teamArray)
+                        var engineerCard = (`<div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title"> ${answers.engineersName}</h5>
+                          <p class="card-title">${answers.engineersemployeeID}</p>
+                          <p class="card-text">${answers.engineersemailAddress}</p>
+                          <p class="card-text">${answers.gitHubUser}</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                      </div>`)
+
+                    //   fullArray.push(engineerCard)
+                        // console.log (engineerCard)
+                        // console.log (engineerAppend)
+                        // console.log (teamArray)
 
                                teamCreator () 
                             })
@@ -130,13 +157,13 @@ switch(answers.className) {
 
                         {
                             type: "input",
-                            name: "employeeID",
+                            name: "internsID",
                             message: "Please enter the ID of the Intern.",
                         },
 
                         {
                             type: "input",
-                            name: "emailAddress",
+                            name: "internsemailAddress",
                             message: "Please enter the email address of the Intern.",
                         },
 
@@ -149,11 +176,24 @@ switch(answers.className) {
 
 
                     ]) .then (answers=>{
-                        const internAppend = new Intern (answers.internsName, answers.employeeID, answers.emailAddress, answers.school)
+                        const internAppend = new Intern (answers.internsName, answers.internsID, answers.internsemailAddress, answers.school)
                         teamArray.push(internAppend)
                         
-                        console.log (internAppend)
-                        console.log (teamArray)
+                        var internCard = (`<div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title"> ${answers.internsName}</h5>
+                          <p class="card-title">${answers.internsID}</p>
+                          <p class="card-text">${answers.internsemailAddress}</p>
+                          <p class="card-text">${answers.school}</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                      </div>`)
+
+                      fullArray.push(internCard)
+
+                        // console.log (internAppend)
+                        // console.log (teamArray)
 
                                teamCreator () 
                             })
@@ -161,4 +201,85 @@ switch(answers.className) {
                         }
             
 
+
+
+
+const arrayTest = () => {
+return `                        
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"> ${teamArray[0].name}</h5>
+      <p class="card-title">${teamArray[0].id}</p>
+      <p class="card-text">${teamArray[0].email}</p>
+      <p class="card-text">${teamArray[0].officeNumber}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    </div>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"> ${teamArray[1].name}</h5>
+      <p class="card-title">${teamArray[1].id}</p>
+      <p class="card-text">${teamArray[1].email}</p>
+      <p class="card-text">${teamArray[1].githubusername}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"> ${teamArray[2].name}</h5>
+      <p class="card-title">${teamArray[2].id}</p>
+      <p class="card-text">${teamArray[2].email}</p>
+      <p class="card-text">${teamArray[2].githubusername}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"> ${teamArray[3].name}</h5>
+      <p class="card-title">${teamArray[3].id}</p>
+      <p class="card-text">${teamArray[3].email}</p>
+      <p class="card-text">${teamArray[3].school}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"> ${teamArray[3].name}</h5>
+      <p class="card-title">${teamArray[3].id}</p>
+      <p class="card-text">${teamArray[3].email}</p>
+      <p class="card-text">${teamArray[3].school}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  </body>
+ </html>`
+
+
+
+
+
+
+
+
+    // console.log(teamArray)
+    // console.log (teamArray[1].id)
+}
+
+// console.log (HTMLCreator(engineerCard))
+// console.log (fullArray)
                         // console.log (teamArray.Engineer.id)
