@@ -229,7 +229,7 @@ return `
       <h2 class="card-title"> ${teamArray[0].name}</h2>
       <h5 class="card-title"> Manager </h5>
       <p class="card-title">ID: ${teamArray[0].id}</p>
-      <p class="card-text"><a href="mailto: ${teamArray[0].email}">Email: ${teamArray[0].email}</a></p>
+      <p class="card-text">Email: <a href="mailto: ${teamArray[0].email}">${teamArray[0].email}</a></p>
       <p class="card-text">Office Number: ${teamArray[0].officeNumber}</p>
 
     </div>
@@ -240,8 +240,8 @@ return `
       <h2 class="card-title"> ${teamArray[1].name}</h2>
       <h5 class="card-title"> Engineer </h5>
       <p class="card-title">ID: ${teamArray[1].id}</p>
-      <p class="card-text"><a href="mailto: ${teamArray[1].email}">Email: ${teamArray[1].email}</a></p>
-      <p class="card-text"><a href="https://www.github.com/${teamArray[1].githubusername}" download target="_blank">GitHub Username: ${teamArray[1].githubusername}</a></p>
+      <p class="card-text">Email: <a href="mailto: ${teamArray[1].email}">${teamArray[1].email}</a></p>
+      <p class="card-text">GitHub Username: <a href="https://www.github.com/${teamArray[1].githubusername}" download target="_blank">${teamArray[1].githubusername}</a></p>
 
     </div>
   </div>
@@ -251,8 +251,8 @@ return `
       <h2 class="card-title"> ${teamArray[2].name}</h2>
       <h5 class="card-title"> Engineer </h5>
       <p class="card-title">ID: ${teamArray[2].id}</p>
-      <p class="card-text"><a href="mailto: ${teamArray[2].email}">Email: ${teamArray[2].email}</a></p>
-      <p class="card-text"><a href="https://www.github.com/${teamArray[2].githubusername}" download target="_blank">GitHub Username: ${teamArray[2].githubusername}</a></p>
+      <p class="card-text">Email: <a href="mailto: ${teamArray[2].email}">${teamArray[2].email}</a></p>
+      <p class="card-text">GitHub Username: <a href="https://www.github.com/${teamArray[2].githubusername}" download target="_blank">${teamArray[2].githubusername}</a></p>
 
     </div>
   </div>
@@ -265,7 +265,7 @@ return `
       <h2 class="card-title"> ${teamArray[3].name}</h2>
       <h5 class="card-title"> Intern </h5>
       <p class="card-title">ID: ${teamArray[3].id}</p>
-      <p class="card-text"><a href="mailto: ${teamArray[3].email}">Email: ${teamArray[3].email}</a></p>
+      <p class="card-text">Email: <a href="mailto: ${teamArray[3].email}">${teamArray[3].email}</a></p>
       <p class="card-text">School: ${teamArray[3].school}</p>
 
     </div>
@@ -276,7 +276,7 @@ return `
       <h2 class="card-title"> ${teamArray[4].name}</h2>
       <h5 class="card-title"> Intern </h5>
       <p class="card-title">ID: ${teamArray[4].id}</p>
-      <p class="card-text"><a href="mailto: ${teamArray[4].email}">Email: ${teamArray[4].email}</a></p>
+      <p class="card-text">Email: <a href="mailto: ${teamArray[4].email}">${teamArray[4].email}</a></p>
       <p class="card-text">School: ${teamArray[4].school}</p>
 
     </div>
