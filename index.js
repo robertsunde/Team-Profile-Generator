@@ -2,6 +2,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path')
+const Employee = require(`./lib/Employee`)
 const Engineer = require(`./lib/Engineer`)
 const Intern = require(`./lib/Intern`)
 const Manager = require(`./lib/Manager`)
@@ -44,6 +45,7 @@ var managersCard = (`<div class="card" style="width: 18rem;">
 <img class="card-img-top" src="..." alt="Card image cap">
 <div class="card-body">
   <h5 class="card-title"> ${answers.teamManagersName}</h5>
+  <h5 class="card-title"> ${answers.teamManagersName}</h5>
   <p class="card-title">${answers.employeeID}</p>
   <p class="card-text">${answers.emailAddress}</p>
   <p class="card-text">${answers.officeNumber}</p>
@@ -77,7 +79,9 @@ switch(answers.className) {
         internPrompt()
         break;
     case "I am finished adding team members!":
-        fs.writeFileSync('Team.html', arrayTest())
+        fs.writeFileSync('../Team-Profile-Generator/dist/Team.html', arrayTest());
+        
+    console.log(teamArray);
         break;
         default:
 
@@ -213,58 +217,70 @@ return `
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
 <body>
+<div class="row header"> My Team </div>
+<div class="row">
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
+
     <div class="card-body">
-      <h5 class="card-title"> ${teamArray[0].name}</h5>
-      <p class="card-title">${teamArray[0].id}</p>
-      <p class="card-text">${teamArray[0].email}</p>
-      <p class="card-text">${teamArray[0].officeNumber}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h2 class="card-title"> ${teamArray[0].name}</h2>
+      <h5 class="card-title"> Manager </h5>
+      <p class="card-title">ID: ${teamArray[0].id}</p>
+      <p class="card-text"><a href="mailto: ${teamArray[0].email}">Email: ${teamArray[0].email}</a></p>
+      <p class="card-text">Office Number: ${teamArray[0].officeNumber}</p>
+
     </div>
     </div>
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
+
     <div class="card-body">
-      <h5 class="card-title"> ${teamArray[1].name}</h5>
-      <p class="card-title">${teamArray[1].id}</p>
-      <p class="card-text">${teamArray[1].email}</p>
-      <p class="card-text">${teamArray[1].githubusername}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h2 class="card-title"> ${teamArray[1].name}</h2>
+      <h5 class="card-title"> Engineer </h5>
+      <p class="card-title">ID: ${teamArray[1].id}</p>
+      <p class="card-text"><a href="mailto: ${teamArray[1].email}">Email: ${teamArray[1].email}</a></p>
+      <p class="card-text"><a href="https://www.github.com/${teamArray[1].githubusername}" download target="_blank">GitHub Username: ${teamArray[1].githubusername}</a></p>
+
     </div>
   </div>
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
+
     <div class="card-body">
-      <h5 class="card-title"> ${teamArray[2].name}</h5>
-      <p class="card-title">${teamArray[2].id}</p>
-      <p class="card-text">${teamArray[2].email}</p>
-      <p class="card-text">${teamArray[2].githubusername}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h2 class="card-title"> ${teamArray[2].name}</h2>
+      <h5 class="card-title"> Engineer </h5>
+      <p class="card-title">ID: ${teamArray[2].id}</p>
+      <p class="card-text"><a href="mailto: ${teamArray[2].email}">Email: ${teamArray[2].email}</a></p>
+      <p class="card-text"><a href="https://www.github.com/${teamArray[2].githubusername}" download target="_blank">GitHub Username: ${teamArray[2].githubusername}</a></p>
+
+    </div>
+  </div>
+  </div>
+
+<div class="row">
+<div class="card" style="width: 18rem;">
+
+    <div class="card-body">
+      <h2 class="card-title"> ${teamArray[3].name}</h2>
+      <h5 class="card-title"> Intern </h5>
+      <p class="card-title">ID: ${teamArray[3].id}</p>
+      <p class="card-text"><a href="mailto: ${teamArray[3].email}">Email: ${teamArray[3].email}</a></p>
+      <p class="card-text">School: ${teamArray[3].school}</p>
+
     </div>
   </div>
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
+
     <div class="card-body">
-      <h5 class="card-title"> ${teamArray[3].name}</h5>
-      <p class="card-title">${teamArray[3].id}</p>
-      <p class="card-text">${teamArray[3].email}</p>
-      <p class="card-text">${teamArray[3].school}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h2 class="card-title"> ${teamArray[4].name}</h2>
+      <h5 class="card-title"> Intern </h5>
+      <p class="card-title">ID: ${teamArray[4].id}</p>
+      <p class="card-text"><a href="mailto: ${teamArray[4].email}">Email: ${teamArray[4].email}</a></p>
+      <p class="card-text">School: ${teamArray[4].school}</p>
+
     </div>
   </div>
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title"> ${teamArray[3].name}</h5>
-      <p class="card-title">${teamArray[3].id}</p>
-      <p class="card-text">${teamArray[3].email}</p>
-      <p class="card-text">${teamArray[3].school}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
   </div>
   </body>
  </html>`
@@ -276,7 +292,6 @@ return `
 
 
 
-    // console.log(teamArray)
     // console.log (teamArray[1].id)
 }
 
