@@ -7,7 +7,7 @@ const Engineer = require(`./lib/Engineer`)
 const Intern = require(`./lib/Intern`)
 const Manager = require(`./lib/Manager`)
 
-//
+
 const teamArray = []
 const fullArray = []
 
@@ -55,12 +55,11 @@ var managersCard = (`<div class="card" style="width: 18rem;">
 
 fullArray.push(managersCard)
 
-// console.log (managerAppend)
-// console.log (teamArray)
+
 
        teamCreator () 
     })
-// create a function
+
 teamCreator = () => { inquirer.prompt ([
     {
         type: "list",
@@ -85,8 +84,6 @@ switch(answers.className) {
         break;
         default:
 
-        /// put answers into this
-// fs.writeFileSync('index.html', HTMLCreator(answers))
 }})
 
         function engineerPrompt() {
@@ -132,24 +129,13 @@ switch(answers.className) {
                         </div>
                       </div>`)
 
-                    //   fullArray.push(engineerCard)
-                        // console.log (engineerCard)
-                        // console.log (engineerAppend)
-                        // console.log (teamArray)
+                      fullArray.push(engineerCard)
 
                                teamCreator () 
-                            })
-                
-                
-
-                            
+                            })           
                 }}
             
-
-
-
-
-            
+           
         function internPrompt() {
                     inquirer.prompt([
 
@@ -196,17 +182,11 @@ switch(answers.className) {
 
                       fullArray.push(internCard)
 
-                        // console.log (internAppend)
-                        // console.log (teamArray)
-
                                teamCreator () 
                             })
                         
                         }
             
-
-
-
 
 const arrayTest = () => {
 return `                        
@@ -294,7 +274,3 @@ return `
 
     // console.log (teamArray[1].id)
 }
-
-// console.log (HTMLCreator(engineerCard))
-// console.log (fullArray)
-                        // console.log (teamArray.Engineer.id)
