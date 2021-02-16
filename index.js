@@ -1,11 +1,11 @@
 // node packages required for function of application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const path = require('path')
-const Employee = require(`./lib/Employee`)
-const Engineer = require(`./lib/Engineer`)
-const Intern = require(`./lib/Intern`)
-const Manager = require(`./lib/Manager`)
+const path = require('path');
+const Employee = require(`./lib/Employee`);
+const Engineer = require(`./lib/Engineer`);
+const Intern = require(`./lib/Intern`);
+const Manager = require(`./lib/Manager`);
 
 
 const teamArray = []
@@ -79,7 +79,7 @@ switch(answers.className) {
         break;
     case "I am finished adding team members!":
         fs.writeFileSync('../Team-Profile-Generator/dist/Team.html', arrayTest());
-        
+    console.log(fullArray);
     console.log(teamArray);
         break;
         default:
@@ -274,3 +274,5 @@ return `
 
     // console.log (teamArray[1].id)
 }
+
+module.exports = teamArray;
