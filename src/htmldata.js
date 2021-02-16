@@ -83,8 +83,7 @@ const HTMLCreator = () => {
  </html>`
 }
 
-
-
+HTMLCreator()
 
 
 
