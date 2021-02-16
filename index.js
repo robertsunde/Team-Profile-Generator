@@ -7,41 +7,46 @@ const Engineer = require(`./lib/Engineer`);
 const Intern = require(`./lib/Intern`);
 const Manager = require(`./lib/Manager`);
 
-
+// teamArray contains all answers from inquirer prompts below.
 const teamArray = []
+
+//fullArray contains pieces of script to add together for template.
 const fullArray = []
 
-    inquirer.prompt([
+// Base Questions for new team/team manager.
+inquirer.prompt([
 
-        {
-            type: "input",
-            name: "teamManagersName",
-            message: "Please enter the name of the team manager.",
-        },
+    {
+        type: "input",
+        name: "teamManagersName",
+        message: "Please enter the name of the team manager.",
+    },
 
-        {
-            type: "input",
-            name: "employeeID",
-            message: "Please enter the ID of the team manager.",
-        },
+    {
+        type: "input",
+        name: "employeeID",
+        message: "Please enter the ID of the team manager.",
+    },
 
-        {
-            type: "input",
-            name: "emailAddress",
-            message: "Please enter the email address of the team manager.",
-        },
+    {
+        type: "input",
+        name: "emailAddress",
+        message: "Please enter the email address of the team manager.",
+    },
 
-        {
-            type: "input",
-            name: "officeNumber",
-            message: "Please enter the office number of the team manager.",
-        },
+    {
+        type: "input",
+        name: "officeNumber",
+        message: "Please enter the office number of the team manager.",
+    },
 
-    ]) .then (answers=>{
-const managerAppend = new Manager (answers.teamManagersName, answers.employeeID, answers.emailAddress, answers.officeNumber)
-teamArray.push(managerAppend)
+    // appends answers to Manager.js
+]).then(answers => {
+    const managerAppend = new Manager(answers.teamManagersName, answers.employeeID, answers.emailAddress, answers.officeNumber)
+    teamArray.push(managerAppend)
 
-var managersCard = (`<div class="card" style="width: 18rem;">
+    // variable containing template for team manager portion of html template.
+    var managersCard = (`<div class="card" style="width: 18rem;">
 <img class="card-img-top" src="..." alt="Card image cap">
 <div class="card-body">
   <h5 class="card-title"> ${answers.teamManagersName}</h5>
@@ -53,72 +58,78 @@ var managersCard = (`<div class="card" style="width: 18rem;">
 </div>
 </div>`)
 
-fullArray.push(managersCard)
+    fullArray.push(managersCard)
 
 
+    // runs teamCreator function which asks user if they would like to add any more employees to the team.
+    teamCreator()
+})
 
-       teamCreator () 
+// Houses teamCreator function which asks user if they would like to add any more employees to the team.
+teamCreator = () => {
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "className",
+            message: "Would you like to add anyone else to this team?",
+            choices: ["Engineer", "Intern", "I am finished adding team members!"]
+        }
+
+
+    ]).then(answers => {
+        switch (answers.className) {
+            case "Engineer":
+                engineerPrompt()
+                break;
+            case "Intern":
+                internPrompt()
+                break;
+            case "I am finished adding team members!":
+                fs.writeFileSync('../Team-Profile-Generator/dist/Team.html', HTMLTemplate());
+                // console.log(fullArray);
+                console.log(teamArray);
+                break;
+            default:
+
+        }
     })
 
-teamCreator = () => { inquirer.prompt ([
-    {
-        type: "list",
-        name: "className",
-        message: "Would you like to add anyone else to this team?",
-        choices: ["Engineer", "Intern", "I am finished adding team members!"]
-    }
+
+    // Contains inquirer questions that populate when "Engineer" is selected in the teamCreator function.
+    function engineerPrompt() {
+        inquirer.prompt([
+
+            {
+                type: "input",
+                name: "engineersName",
+                message: "Please enter the name of the engineer.",
+            },
+
+            {
+                type: "input",
+                name: "engineersID",
+                message: "Please enter the ID of the engineer.",
+            },
+
+            {
+                type: "input",
+                name: "engineersemailAddress",
+                message: "Please enter the email address of the engineer.",
+            },
+
+            {
+                type: "input",
+                name: "gitHubUser",
+                message: "Please enter the github username of the engineer.",
+            },
 
 
-]) .then (answers=>{
-switch(answers.className) {
-    case "Engineer":
-        engineerPrompt()
-        break;
-    case "Intern":
-        internPrompt()
-        break;
-    case "I am finished adding team members!":
-        fs.writeFileSync('../Team-Profile-Generator/dist/Team.html', arrayTest());
-    console.log(fullArray);
-    console.log(teamArray);
-        break;
-        default:
+// appends answers to Engineer.js            
+]).then(answers => {
+const engineerAppend = new Engineer(answers.engineersName, answers.engineersID, answers.engineersemailAddress, answers.gitHubUser)
+teamArray.push(engineerAppend)
 
-}})
-
-        function engineerPrompt() {
-                    inquirer.prompt([
-
-                        {
-                            type: "input",
-                            name: "engineersName",
-                            message: "Please enter the name of the engineer.",
-                        },
-
-                        {
-                            type: "input",
-                            name: "engineersID",
-                            message: "Please enter the ID of the engineer.",
-                        },
-
-                        {
-                            type: "input",
-                            name: "engineersemailAddress",
-                            message: "Please enter the email address of the engineer.",
-                        },
-
-                        {
-                            type: "input",
-                            name: "gitHubUser",
-                            message: "Please enter the github username of the engineer.",
-                        },
-
-                        
-                    ]).then (answers=>{
-                        const engineerAppend = new Engineer (answers.engineersName, answers.engineersID, answers.engineersemailAddress, answers.gitHubUser)
-                        teamArray.push(engineerAppend)
-                        
-                        var engineerCard = (`<div class="card" style="width: 18rem;">
+            var engineerCard = (`<div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="..." alt="Card image cap">
                         <div class="card-body">
                           <h5 class="card-title"> ${answers.engineersName}</h5>
@@ -129,47 +140,50 @@ switch(answers.className) {
                         </div>
                       </div>`)
 
-                      fullArray.push(engineerCard)
-
-                               teamCreator () 
-                            })           
-                }}
-            
-           
-        function internPrompt() {
-                    inquirer.prompt([
-
-                        {
-                            type: "input",
-                            name: "internsName",
-                            message: "Please enter the name of the Intern.",
-                        },
-
-                        {
-                            type: "input",
-                            name: "internsID",
-                            message: "Please enter the ID of the Intern.",
-                        },
-
-                        {
-                            type: "input",
-                            name: "internsemailAddress",
-                            message: "Please enter the email address of the Intern.",
-                        },
-
-                        {
-                            type: "input",
-                            name: "school",
-                            message: "Please enter the School of the Intern.",
-                        },
+            fullArray.push(engineerCard)
 
 
+// runs teamCreator function which asks user if they would like to add any more employees to the team.                      
+teamCreator()
+})
+}
+}
 
-                    ]) .then (answers=>{
-                        const internAppend = new Intern (answers.internsName, answers.internsID, answers.internsemailAddress, answers.school)
-                        teamArray.push(internAppend)
-                        
-                        var internCard = (`<div class="card" style="width: 18rem;">
+// Contains inquirer questions that populate when "Intern" is selected in the teamCreator function.           
+function internPrompt() {
+    inquirer.prompt([
+
+        {
+            type: "input",
+            name: "internsName",
+            message: "Please enter the name of the Intern.",
+        },
+
+        {
+            type: "input",
+            name: "internsID",
+            message: "Please enter the ID of the Intern.",
+        },
+
+        {
+            type: "input",
+            name: "internsemailAddress",
+            message: "Please enter the email address of the Intern.",
+        },
+
+        {
+            type: "input",
+            name: "school",
+            message: "Please enter the School of the Intern.",
+        },
+
+
+// appends answers to Intern.js  
+]).then(answers => {
+const internAppend = new Intern(answers.internsName, answers.internsID, answers.internsemailAddress, answers.school)
+teamArray.push(internAppend)
+
+        var internCard = (`<div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="..." alt="Card image cap">
                         <div class="card-body">
                           <h5 class="card-title"> ${answers.internsName}</h5>
@@ -180,16 +194,17 @@ switch(answers.className) {
                         </div>
                       </div>`)
 
-                      fullArray.push(internCard)
+        fullArray.push(internCard)
 
-                               teamCreator () 
-                            })
-                        
-                        }
-            
 
-const arrayTest = () => {
-return `                        
+// runs teamCreator function which asks user if they would like to add any more employees to the team.                        
+teamCreator()
+})
+}
+
+// contains HTML Template
+const HTMLTemplate = () => {
+    return `                        
 <!DOCTYPE html>
 <html lang="en">
 <head>

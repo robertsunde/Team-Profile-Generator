@@ -21,7 +21,7 @@ This application utilizes NPM for prompts and testing. To install, the user must
 <br/>
 <br/>
 ## Usage <br/>
-To use folloow the install/execution information, as this application runs in the terminal. <br/>
+To use follow the install/execution information, as this application runs in the terminal. <br/>
 <br/>
 <br/>
 ## License <br/>
